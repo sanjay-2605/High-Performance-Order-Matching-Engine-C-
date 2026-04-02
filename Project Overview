@@ -1,0 +1,11 @@
+
+This project simulates a stock exchange matching engine that:
+
+Accepts buy and sell orders
+Maintains an order book
+Matches orders using price-time priority
+Executes trades
+Stores trade history
+Supports order cancellation
+
+This is similar to systems used in trading firms and exchanges.
