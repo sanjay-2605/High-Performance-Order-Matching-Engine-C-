@@ -1,0 +1,19 @@
+Basic Features-
+
+Limit Buy Order
+Limit Sell Order
+Order Book (Bid / Ask)
+Price-Time Priority Matching
+Trade Execution
+Order Cancellation
+Trade History
+Display Order Book
+
+Advanced Features-
+
+Multithreading
+Performance benchmarking
+Order ID lookup using HashMap
+Logging
+CSV order input
+Latency measurement
