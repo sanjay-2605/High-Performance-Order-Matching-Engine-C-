@@ -1,0 +1,7 @@
+| Component     | Data Structure |
+| ------------- | -------------- |
+| Buy Orders    | Max Heap       |
+| Sell Orders   | Min Heap       |
+| Order Lookup  | Hash Map       |
+| Trade History | Vector         |
+| Order Book    | Priority Queue |
