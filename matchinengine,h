@@ -1,0 +1,50 @@
+#ifndef MATCHINGENGINE_H
+#define MATCHINGENGINE_H
+
+#include "OrderBook.h"
+#include "Trade.h"
+#include <vector>
+#include <iostream>
+
+class MatchingEngine {
+private:
+    OrderBook orderBook;
+    std::vector<Trade> trades;
+
+public:
+    void addOrder(Order* order) {
+        if (order->type == BUY)
+            orderBook.buyOrders.push(order);
+        else
+            orderBook.sellOrders.push(order);
+
+        matchOrders();
+    }
+
+    void matchOrders() {
+        while (!orderBook.buyOrders.empty() && !orderBook.sellOrders.empty()) {
+            Order* buy = orderBook.buyOrders.top();
+            Order* sell = orderBook.sellOrders.top();
+
+            if (buy->price >= sell->price) {
+                int tradeQty = std::min(buy->quantity, sell->quantity);
+                double tradePrice = sell->price;
+
+                trades.emplace_back(buy->orderId, sell->orderId, tradePrice, tradeQty);
+
+                buy->quantity -= tradeQty;
+                sell->quantity -= tradeQty;
+
+                if (buy->quantity == 0) orderBook.buyOrders.pop();
+                if (sell->quantity == 0) orderBook.sellOrders.pop();
+
+                std::cout << "Trade Executed: "
+                          << tradeQty << " @ " << tradePrice << std::endl;
+            } else {
+                break;
+            }
+        }
+    }
+};
+
+#endif
